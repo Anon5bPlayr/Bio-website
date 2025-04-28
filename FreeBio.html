@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Bio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: url('your-background-image.gif') no-repeat center center fixed; /* Replace with custom image/GIF */
+            background-size: cover;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .bio-header {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .bio-text {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .icon-circle:hover {
+            transform: scale(1.1);
+        }
+
+        .icon {
+            width: 40px;
+            height: 40px;
+            color: #6b74ff;
+            transition: color 0.3s ease;
+        }
+
+        .icon-circle:hover .icon {
+            color: #8d5eff;
+        }
+
+        .snowflake {
+            position: absolute;
+            color: #FFF;
+            font-size: 1.5rem;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        audio {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 3;
+            display: none; /* Hide audio player */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Audio Player for Background Music -->
+    <audio id="background-music" loop>
+        <source src="your-audio-file.mp3" type="audio/mp3"> <!-- Replace with your audio file -->
+        Your browser does not support the audio tag.
+    </audio>
+
+    <div class="container">
+        <h1 class="bio-header">Hello, I'm [Your Name]</h1>
+        <p class="bio-text">I'm a passionate developer who loves creating cool websites and learning new technologies. Check out my social profiles!</p>
+        
+        <div class="social-icons">
+            <div class="icon-circle">
+                <a href="https://twitter.com" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/60/Twitter_Logo_2012.png" alt="Twitter" class="icon">
+                </a>
+            </div>
+            <div class="icon-circle">
+                <a href="https://github.com" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Octicons-mark-github.svg" alt="GitHub" class="icon">
+                </a>
+            </div>
+            <div class="icon-circle">
+                <a href="https://linkedin.com" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/LinkedIn_Logo_2023.svg" alt="LinkedIn" class="icon">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Snowfall Effect
+        const snowflakes = "❄️";
+        const numSnowflakes = 50;
+        
+        for (let i = 0; i < numSnowflakes; i++) {
+            let snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.textContent = snowflakes;
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            snowflake.style.animationDuration = Math.random() * 3 + 3 + 's';
+            snowflake.style.animationDelay = Math.random() * 5 + 's';
+            snowflake.style.left = Math.random() * window.innerWidth + 'px';
+            snowflake.style.animationName = 'fall';
+            document.body.appendChild(snowflake);
+        }
+
+        // Keyframes for Snowfall Animation
+        const styleSheet = document.styleSheets[0];
+        const keyframes = `@keyframes fall {
+            0% { transform: translateY(-100px); }
+            100% { transform: translateY(${window.innerHeight + 100}px); }
+        }`;
+        styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+
+        // Play Background Music Automatically
+        window.onload = () => {
+            const audio = document.getElementById('background-music');
+            audio.play();
+        };
+    </script>
+
+</body>
+</html>
